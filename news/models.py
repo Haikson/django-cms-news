@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from cms.models import CMSPlugin
 from pytils.translit import slugify
 from djangocms_text_ckeditor.fields import HTMLField
 
@@ -36,13 +35,17 @@ class News(models.Model):
         verbose_name = _('The News')
         verbose_name_plural = _('News')
 
-class NewsListPlugin(CMSPlugin):
-    TEMPLATE_CHOICES = (
-        ('aside.html', _('Aside template')),
-        ('inner_list.html', _('News list template')),
-    )
-    count = models.IntegerField(verbose_name=_('Count of news'))
-    template = models.CharField(max_length=255, verbose_name=_('Template'), choices=TEMPLATE_CHOICES)
+try:
+    from cms.models import CMSPlugin
+    class NewsListPlugin(CMSPlugin):
+        TEMPLATE_CHOICES = (
+            ('aside.html', _('Aside template')),
+            ('inner_list.html', _('News list template')),
+        )
+        count = models.IntegerField(verbose_name=_('Count of news'))
+        template = models.CharField(max_length=255, verbose_name=_('Template'), choices=TEMPLATE_CHOICES)
+except:
+    pass
 
     def __unicode__(self):
         return '%s' % self.count
