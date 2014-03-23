@@ -1,0 +1,11 @@
+{% load url from future %}
+{% for n in news %}
+    <div class="row">
+        <span class="label label-inverse">{{ n.created.date }}</span>
+        <p>{{ n.intro }}</p>
+        <div class="btn-align"><a href="{% url 'news_namespace:news_the_news' n.slug %}" title="read more" class="btn btn-inverse btn-normal btn-primary" target="_self">Читать подробнее</a></div>
+        <hr>
+    </div>
+{% endfor %}
+
+<div class="row"><p><a href="{% url 'news_namespace:news_news' %}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-list"></span>Все новости школы</a></p></div>

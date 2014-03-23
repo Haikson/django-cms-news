@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load cms_tags menu_tags %}{% load url from future %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+      <li><a href="/">Главная</a></li>
+      <li>Новости</li>
+    </ol>
+{% endblock breadcrumbs %}
+{% block content %}
+<div id="content" class="col-md-12">
+    <h1>{% placeholder "title_h1" %}</h1>
+    {% placeholder "base_content" %}
+
+    {% for the_news in news %}
+    <h6>{{ the_news.title|upper }}</h6>
+    <div>{{ the_news.intro|safe }}</div>
+    <div class="btn-align"><a href="{% url 'news_namespace:news_the_news' slug=the_news.slug %}" class="btn btn-inverse btn-normal btn-primary" role="button"><span class="glyphicon glyphicon-align-justify text-white"></span>Подробнее ...</a></div>
+    <hr>
+    {% endfor %}
+    
+    <ul class="pagination">
+        {% for p in news.paginator.page_range %}
+        <li{% if p == news.number %} class="active"{% endif %}><a href="?page={{ p }}">{{ p }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
+
+{% block header %}
+{% include 'elements/header.html' %}
+{% endblock header %}
