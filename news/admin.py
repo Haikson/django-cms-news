@@ -8,6 +8,7 @@ class NewsAdmin(admin.ModelAdmin):
     class Media:
         if 'filebrowser' in settings.INSTALLED_APP:
             js = (
+                '/static/js/ckeditor_fb.js',
                 '/static/filebrowser/js/FB_CKEditor.js',
             )
         else:
