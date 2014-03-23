@@ -10,6 +10,11 @@ Installation
 pip install -e git@github.com:Haikson/django-cms-news.git
 ```
 
+Requirements
+------------
+
+* djangocms_text_ckeditor
+
 Usage
 -----
 
