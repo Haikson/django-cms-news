@@ -14,9 +14,19 @@ Requirements
 ------------
 
 * djangocms_text_ckeditor
+* pytils
 
 Usage
 -----
 
-Add ```news``` to ```INSTALLED_APPS```
+Add ```news, django_text_ckeditor, pytils``` to ```INSTALLED_APPS```
 
+```python
+INSTALLED_APPS = (
+    # ..........
+    'django_text_ckeditor',
+    'news',
+    'pytils',
+    # ..........
+)
+```
